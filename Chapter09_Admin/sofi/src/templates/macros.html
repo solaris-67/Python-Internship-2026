@@ -1,0 +1,22 @@
+{% macro render_photo(photo) %}
+<div class="col my-3 mx-2">
+    <div class="card px-3" style="width: 20rem;">
+        <img src="{{ url_for('static', filename=photo.img) }}" class="card-img-top" alt="{{ photo.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ photo.title }}</h5>
+            <p class="card-text">{{ photo.artist }}</p>
+            <a href="{{ url_for('photo.photo', id=photo.id) }}" class="btn btn-dark">More</a>
+            <a href="{{ url_for('photo.edit', id=photo.id) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ url_for('photo.delete', id=photo.id) }}" class="btn btn-danger">Remove</a>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro nav_link(route, name) %}
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == url_for(route) %} active {% endif %}" aria-current="page"
+           href="{{ url_for(route) }}">{{ name }}</a>
+    </li>
+{% endmacro %}
